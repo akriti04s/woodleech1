@@ -35,34 +35,34 @@ def stats(update, context):
     cpuUsage = cpu_percent(interval=1)
     memory = virtual_memory()
     mem_p = memory.percent
-    stats = f'<b>★★★ Bot Statistics ★</b>\n'\
-            f'<b>★</b>\n'\
-            f'<b>★Updated ●</b> <code>{last_commit}</code>\n'\
-            f'<b>★I am Working ●</b> <code>{currentTime}</code>\n'\
-            f'<b>★Total Disk ●</b> <code>{total}</code> [{disk}% In use]\n'\
-            f'<b>★Used ●</b> <code>{used}</code>\n'\
-            f'<b>★Free ●</b> <code>{free}</code>\n'\
-            f'<b>★T-Up ●</b> <code>{sent}</code>\n'\
-            f'<b>★T-Dn ●</b> <code>{recv}</code>\n'\
-            f'<b>★CPU Usage ●</b> <code>{cpuUsage}</code>%\n'\
-            f'<b>★RAM Usage ●</b> <code>{mem_p}%</code>\n'\
-            f'<b>★</b>\n'
+    stats = f'<b>    Bot Statistics</b>\n'\
+            f'<b></b>\n'\
+            f'<b>Updated:</b> <code>{last_commit}</code>\n'\
+            f'<b>Bot Uptime: </b> <code>{currentTime}</code>\n\n'\
+            f'<b>Total Disk Space:</b> <code>{total}</code> [{disk}% In use]\n'\
+            f'<b>Used:</b> <code>{used}</code>\n'\
+            f'<b>Free:</b> <code>{free}</code>\n'\
+            f'<b>Upload:</b> <code>{sent}</code>\n'\
+            f'<b>Download:</b> <code>{recv}</code>\n\n'\
+            f'<b>CPU Usage:</b> <code>{cpuUsage}</code>%\n'\
+            f'<b>RAM Usage:</b> <code>{mem_p}%</code>\n'\
+            f'<b>This is a private bot</b>\n'
     reply_message = sendMessage(stats, context.bot, update.message)
     Thread(target=auto_delete_message, args=(context.bot, update.message, reply_message)).start()
 
 def start(update, context):
     buttons = ButtonMaker()
-    buttons.buildbutton("★Repo", "https://github.com/woodcraft5/mirror-leech-bot")
-    buttons.buildbutton("★Group", "https://t.me/+mmlX62hc9M43YjI1")
-    buttons.buildbutton("★Channel", "https://t.me/woodcraft_repo")
-    buttons.buildbutton("★Owner", "https://t.me/woodcraft5")
+    buttons.buildbutton("Repo", "https://github.com/akriti04s/wood-mirror-leech-bot")
+    buttons.buildbutton("Group", "https://t.me/+mmP2x6Ys4kphNTIx")
+    buttons.buildbutton("Channel", "https://t.me/linktoallchannel")
+    buttons.buildbutton("Owner", "https://t.me/godofaces")
     reply_markup = InlineKeyboardMarkup(buttons.build_menu(2))
     if CustomFilters.authorized_user(update) or CustomFilters.authorized_chat(update):
         start_string = f'''
-Welcome | ✤◄ 𝐖𝐎𝐎𝐃𝐜𝐫𝐚𝐟𝐭 ►✤ Bot is ✔️Ready
+Welcome to Zendaya mirror leech bot!
 Type /{BotCommands.HelpCommand} to get a list of available commands
 '''
-        update.effective_message.reply_photo("https://telegra.ph/file/d2d65936765c436fa8835.jpg", parse_mode=ParseMode.MARKDOWN)
+        update.effective_message.reply_photo("https://mega.nz/file/8FNgwQrT#_8dWtxCExNvKnkQLzz8c_V3qwX1JCYzC49IQcCWyj1g", parse_mode=ParseMode.MARKDOWN)
         sendMarkup(start_string, context.bot, update.message, reply_markup)
     else:
         sendMarkup('Sorry, You cannot use me', context.bot, update.message, reply_markup)
@@ -264,12 +264,12 @@ def main():
     if ospath.isfile(".restartmsg"):
         with open(".restartmsg") as f:
             chat_id, msg_id = map(int, f)
-        bot.edit_message_text("✔️Restarted successfully!", chat_id, msg_id)
+        bot.edit_message_text("Restarted successfully!", chat_id, msg_id)
         osremove(".restartmsg")
     elif not notifier_dict and AUTHORIZED_CHATS:
         for id_ in AUTHORIZED_CHATS:
             try:
-                bot.sendMessage(id_, "✔️Bot Restarted!", 'HTML')
+                bot.sendMessage(id_, "Bot Restarted!", 'HTML')
             except Exception as e:
                 LOGGER.error(e)
 
